@@ -1,7 +1,7 @@
 pipeline {
   triggers {
     //FIX-ME
-    pollSCM('H/5 * * * *)
+    pollSCM('H/5 * * * *')
   }
   options {
     disableConcurrentBuilds()
