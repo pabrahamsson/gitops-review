@@ -14,14 +14,14 @@ pipeline {
   stages {
     stage ('Validate configuration resources') {
       steps {
-        sh 'oc apply --dry-run --validate -k samples'
-        sh 'oc delete --dry-run -f delete'
+        sh 'oc apply --dry-run=client --validate -k samples'
+        sh 'oc delete --dry-run=client -f delete'
       }
     }
     stage ('Apply resources') {
       when {
         //FIX-ME
-        branch main
+        branch 'main'
       }
       steps {
         //FIX-ME
@@ -33,7 +33,7 @@ pipeline {
     stage ('Verify deleted templates') {
       when {
         //FIX-ME
-        branch main
+        branch 'main'
       }
       steps {
         sh '! oc get templates -n openshift | grep -q rails'
